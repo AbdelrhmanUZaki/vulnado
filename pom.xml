@@ -73,24 +73,34 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-gpg-plugin</artifactId>
-				<version>3.1.0</version>
-				<executions>
-					<execution>
-					<id>sign-artifacts</id>
-					<phase>verify</phase>
-					<goals>
-						<goal>sign</goal>
-					</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<gpgExecutable>gpg</gpgExecutable>
-					<gpgPassphrase>${env.GPG_PASSPHRASE}</gpgPassphrase>
-				</configuration>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-gpg-plugin</artifactId>
+			<version>3.1.0</version>
+			<executions>
+				<execution>
+				<id>sign-artifacts</id>
+				<phase>verify</phase>
+				<goals>
+					<goal>sign</goal>
+				</goals>
+				</execution>
+			</executions>
+			<configuration>
+				<gpgExecutable>gpg</gpgExecutable>
+				<gpgPassphrase>${env.GPG_PASSPHRASE}</gpgPassphrase>
+				<arguments>
+				<argument>--batch</argument>
+				<argument>---yes</argument>
+				<argument>--no-tty</argument>
+				<argument>--pinentry-mode</argument>
+				<argument>loopback</argument>
+				<argument>--armor</argument>
+				</arguments>
+			</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
 
